@@ -55,7 +55,7 @@ export function FAQ() {
           </p>
         </div>
 
-        <Accordion type="single" collapsible className="space-y-3">
+        <Accordion className="space-y-3">
           {faqs.map((faq, i) => (
             <AccordionItem
               key={i}
