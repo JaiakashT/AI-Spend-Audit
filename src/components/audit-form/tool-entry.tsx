@@ -60,11 +60,13 @@ export function ToolEntry({ index, form, onRemove, canRemove }: ToolEntryProps) 
           <Select
             value={selectedTool || undefined}
             onValueChange={(val) => {
-              form.setValue(`tools.${index}.toolName`, val, {
-                shouldValidate: true,
-              });
-              // Reset plan when tool changes
-              form.setValue(`tools.${index}.plan`, '');
+              if (val) {
+                form.setValue(`tools.${index}.toolName`, val, {
+                  shouldValidate: true,
+                });
+                // Reset plan when tool changes
+                form.setValue(`tools.${index}.plan`, '');
+              }
             }}
           >
             <SelectTrigger
@@ -92,11 +94,13 @@ export function ToolEntry({ index, form, onRemove, canRemove }: ToolEntryProps) 
           <Label className="text-xs text-zinc-400">Plan</Label>
           <Select
             value={form.watch(`tools.${index}.plan`) || undefined}
-            onValueChange={(val) =>
-              form.setValue(`tools.${index}.plan`, val, {
-                shouldValidate: true,
-              })
-            }
+            onValueChange={(val) => {
+              if (val) {
+                form.setValue(`tools.${index}.plan`, val, {
+                  shouldValidate: true,
+                });
+              }
+            }}
             disabled={!selectedTool}
           >
             <SelectTrigger
